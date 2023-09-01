@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mb-3">
+    <div class="col-md-4">
+        {% if movie.cover %}
+        <img src="{{ url_for('static', filename='images/' + movie.cover) }}" class="img-fluid">
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1 class="display-4 mt-3">
+            {{ movie.title }}
+        </h1>
+        {% if average_score %}
+        <p class="lead">
+            Average score: {{ average_score }}
+        </p>
+        {% endif %}
+        <p>{{ movie.description }}</p>
+    </div>
+</div>
+<h1 class="display-4">Reviews</h1>
+<div class="m-3">
+    {% for review in movie.reviews %}
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text">
+                Author: {{ review.name }} | Published at {{ review.created.strftime('%d.%m.%Y') }}
+            </p>
+            <hr>
+            <p class="card-text font-italic">{{ review.text }}</p>
+            <p class="card-text font-italic">Score: {{ review.score }}/10 </p>
+        </div>
+    </div>
+    {% else %}
+    <p>No reviews found.</p>
+    {% endfor %}
+</div>
+{% include 'reviews.html' %}
+{% endblock %}

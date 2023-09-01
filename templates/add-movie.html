@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'banner.html' %}
+<div class="row gx-4 gx-lg-5">
+    <form method="POST" enctype="multipart/form-data" novalidate>
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <h1>Add Movie</h1>
+            <label class="mb-3">{{ form.title.label }}</label>
+            {{ form.title(class='form-control') }}
+            {% for error in form.title.errors %}
+            <div class="alert alert-danger mt-3" role="alert">
+                <span>{{ error }}</span>
+            </div>
+            {% endfor %}
+            <label class="mb-3">{{ form.description.label }}</label>
+            {{ form.description(class='form-control') }}
+            {% for error in form.description.errors %}
+            <div class="alert alert-danger mt-3" role="alert">
+                <span>{{ error }}</span>
+            </div>
+            {% endfor %}
+            <label class="mb-3">{{ form.cover.label }}</label>
+            {{ form.cover(class='form-control') }}
+            {% for error in form.cover.errors %}
+            <div class="alert alert-danger mt-3" role="alert">
+                <span>{{ error }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        <br />
+        {{ form.submit(class='btn btn-lg btn-primary') }}
+    </form>
+</div>
+{% endblock %}
