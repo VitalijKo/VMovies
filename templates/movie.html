@@ -3,7 +3,7 @@
 <div class="row mb-3">
     <div class="col-md-4">
         {% if movie.cover %}
-        <img src="{{ url_for('static', filename='images/' + movie.cover) }}" class="img-fluid">
+        <img src="{{ url_for('static', filename='img/' + movie.cover) }}" class="img-fluid">
         {% endif %}
     </div>
     <div class="col-md-8">
@@ -23,12 +23,12 @@
     {% for review in movie.reviews %}
     <div class="card mb-4">
         <div class="card-body">
-            <p class="card-text">
-                Author: {{ review.name }} | Published at {{ review.created.strftime('%d.%m.%Y') }}
+            <p class="card-text fs-2 fst-italic">{{ review.score }}/10</p>
+            <p class="card-text fs-4">{{ review.text }}</p>
+            <hr class="mt-4">
+            <p class="card-text fs-6 fw-bolder">
+                {{ review.name }} at {{ review.created.strftime('%d.%m.%Y') }}
             </p>
-            <hr>
-            <p class="card-text font-italic">{{ review.text }}</p>
-            <p class="card-text font-italic">Score: {{ review.score }}/10 </p>
         </div>
     </div>
     {% else %}
